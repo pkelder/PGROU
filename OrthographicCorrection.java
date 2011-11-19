@@ -7,7 +7,7 @@ import java.util.Set;
 
 import com.stibocatalog.hunspell.Hunspell;
 
-public class OrthographicCorrection implements OrthographicCorrectionInterface {
+public class OrthographicCorrection implements OrthographicCorrector {
 	/* Attributes */
 	String textToCorrect;
 	HashMap<String, List<String>> mistakesAndSuggestions;

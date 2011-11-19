@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface GrammaticalCorrectionInterface {
+public interface GrammaticalCorrector {
 	public void correctText();
 
 	public boolean hasNextMistake();
@@ -10,6 +10,6 @@ public interface GrammaticalCorrectionInterface {
 	public List<String> nextSuggestions();
 
 	public int nextMistakeLine();
-	
+
 	public String nextMessage();
 }

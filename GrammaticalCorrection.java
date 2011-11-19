@@ -4,7 +4,7 @@ import de.danielnaber.languagetool.rules.RuleMatch;
 
 import java.util.*;
 
-public class GrammaticalCorrection implements GrammaticalCorrectionInterface {
+public class GrammaticalCorrection implements GrammaticalCorrector {
 	/* Attributes */
 	String textToCorrect;
 	List<RuleMatch> mistakesInfos;
@@ -59,9 +59,10 @@ public class GrammaticalCorrection implements GrammaticalCorrectionInterface {
 	public boolean hasNextMistake() {
 		return this.iterator.hasNext();
 	}
-	
+
 	/*
 	 * Retourne l'erreur suivante
+	 * 
 	 * @see GrammaticalCorrectionInterface#nextMistake()
 	 */
 	@Override

@@ -28,7 +28,7 @@ public class Main {
 	 */
 	public static void demonstrateur_1() {
 		// Mettre le path vers le PDF en argument
-		PDFExtractor correctorPDF = new PDFExtractor("/Users/loukelder/Desktop/P.pdf");
+		PDFExtraction correctorPDF = new PDFExtraction("/Users/loukelder/Desktop/P.pdf");
 
 
 		// Extraction du texte
@@ -37,8 +37,8 @@ public class Main {
 		System.out.println(textToCorrect);
 
 
-		//finalResult est une liste d'objets Triplet, rsumant l'ensemble des erreurs trouves
-		//c'est ˆ partir de a qu'on crera tous les fichiers de sortie
+		//finalResult est une liste d'objets Triplet, rï¿½sumant l'ensemble des erreurs trouvï¿½es
+		//c'est ï¿½ partir de ï¿½a qu'on crï¿½era tous les fichiers de sortie
 		
 		List<Triplet> finalResult=new ArrayList<Triplet>();
 		
@@ -58,16 +58,16 @@ public class Main {
 		while (i.hasNext() && counter < 20) {
 			currentBadWord = i.next();
 			
-			//test ventuellement ˆ revoir: on regarde juste ici si currentBadWord est l'entier de la ligne suivante
+			//test ï¿½ventuellement ï¿½ revoir: on regarde juste ici si currentBadWord est l'entier de la ligne suivante
 			
 			if (Integer.parseInt(currentBadWord)==currentLine+1){
-				//on a atteint un sparateur de lignes: on passe ˆ la ligne suivante
+				//on a atteint un sï¿½parateur de lignes: on passe ï¿½ la ligne suivante
 				currentLine++;
 			}
 			
 			else{
 				
-			//cration de la liste des suggestions du mot en cours
+			//crï¿½ation de la liste des suggestions du mot en cours
 			List<String> currentSuggestion=new ArrayList<String>();
 			j = orthoMistakesAndSuggestions.get(currentBadWord).iterator();
 			
@@ -82,7 +82,7 @@ public class Main {
 			
 			}
 			
-			//ˆ quoi sert ce compteur? on limite le nombre de suggestions ˆ 20?
+			//ï¿½ quoi sert ce compteur? on limite le nombre de suggestions ï¿½ 20?
 			counter++;
 		}
 		
@@ -95,11 +95,11 @@ public class Main {
 		// Pour visualiser le contenu de grammMistakesAndInfos
 		for (RuleMatch currentMistake : grammMistakesAndInfos) {
 			
-			//cration du Triplet de l'erreur
-			//ˆ vrifier: currentMistake.getMessage() renvoie bien le mot concern par l'erreur?
+			//crï¿½ation du Triplet de l'erreur
+			//ï¿½ vï¿½rifier: currentMistake.getMessage() renvoie bien le mot concernï¿½ par l'erreur?
 			Triplet currentTriplet=new Triplet(currentMistake.getEndLine(),currentMistake.getMessage(),currentMistake.getSuggestedReplacements());
 			
-			//ajout du triplet ˆ la finalResult
+			//ajout du triplet ï¿½ la finalResult
 			finalResult.add(currentTriplet);
 			
 		/*	System.out.println("Potential error at line " +

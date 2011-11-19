@@ -1,7 +1,6 @@
 import java.util.List;
 
-
-public interface OrthographicCorrectionInterface {
+public interface OrthographicCorrector {
 	public void correctText();
 
 	public boolean hasNextMistake();
