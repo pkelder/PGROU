@@ -4,7 +4,7 @@ import de.danielnaber.languagetool.rules.RuleMatch;
 
 import java.util.*;
 
-public class GrammaticalCorrection implements GrammaticalCorrector {
+public class GrammaticalCorrection implements Corrector {
 	/* Attributes */
 	String textToCorrect;
 	List<RuleMatch> mistakesInfos;
@@ -96,8 +96,8 @@ public class GrammaticalCorrection implements GrammaticalCorrector {
 	 * @see GrammaticalCorrectionInterface#nextMistakeLine()
 	 */
 	@Override
-	public int nextMistakeLine() {
-		return this.currentMistakeInfo.getLine();
+	public int[] nextMistakeLine() {
+		return new int[]{this.currentMistakeInfo.getLine()};
 	}
 
 	/*

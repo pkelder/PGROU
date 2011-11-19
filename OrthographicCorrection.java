@@ -7,7 +7,7 @@ import java.util.Set;
 
 import com.stibocatalog.hunspell.Hunspell;
 
-public class OrthographicCorrection implements OrthographicCorrector {
+public class OrthographicCorrection implements Corrector {
 	/* Attributes */
 	String textToCorrect;
 	HashMap<String, List<String>> mistakesAndSuggestions;
@@ -52,19 +52,19 @@ public class OrthographicCorrection implements OrthographicCorrector {
 
 		/* Attributes */
 		String separators = new String("\\s|\\.|:|,|;"); // Liste des
-															// séparateurs qui
-															// déterminent
-															// comment découper
-															// le texte.
+		// séparateurs qui
+		// déterminent
+		// comment découper
+		// le texte.
 		String lineSeparator = new String("\\n");
 		String dictionaryPath = new String(
 				"/home/tagazok/Documents/Cours/PGROU/Hunspell_Dictionaries/en_GB"); // Path
-																					// to
-																					// the
-																					// dictionary
+		// to
+		// the
+		// dictionary
 		Hunspell.Dictionary dico = null; // Hunspell dico
 		HashMap<String, List<String>> result = new HashMap<String, List<String>>(); // Résultat
-																					// final
+		// final
 
 		// on commence ici par s�parer chaque ligne du texte
 
@@ -144,7 +144,7 @@ public class OrthographicCorrection implements OrthographicCorrector {
 	public int[] nextMistakeLine() {
 		// On découpe le texte au niveau de l'erreur
 		String[] splittedText = this.textToCorrect.split(this.currentMistake);
-		int length = splittedText.length;
+		int length = splittedText.length - 1;
 		int[] result = new int[length];
 		// On compte le nombre d'occurrence de retour à la ligne dans chaque
 		// morceau
@@ -161,6 +161,11 @@ public class OrthographicCorrection implements OrthographicCorrector {
 		}
 
 		return result;
+	}
+
+	@Override
+	public String nextMessage() {
+		return null;
 	}
 
 }

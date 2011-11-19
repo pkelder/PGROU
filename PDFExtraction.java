@@ -1,31 +1,27 @@
 import java.io.*;
 
-
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
-
-
 public class PDFExtraction implements PDFExtractor {
-	
-	/*****  Attributes  *****/
+
+	/***** Attributes *****/
 	protected String extractedText = new String();
 	protected String pathToPDF = new String();
-	
-	
-	
-	/*****  Constructors  *****/
+
+	/***** Constructors *****/
 	public PDFExtraction(String pathToPDF) {
 		this.pathToPDF = pathToPDF;
 	}
-	
-	public PDFExtraction() {}
-	
-	
+
+	public PDFExtraction() {
+	}
+
 	/*
-	 * Méthode qui extrait le texte du PDF. Prend le path du PDF, et retourne le texte extrait
+	 * Méthode qui extrait le texte du PDF. Prend le path du PDF, et retourne le
+	 * texte extrait
 	 * 
 	 * @param pathToPDF
 	 */
@@ -35,13 +31,14 @@ public class PDFExtraction implements PDFExtractor {
 		PDFTextStripper pdfStripper = null;
 		PDDocument pdDoc = null;
 		COSDocument cosDoc = null;
-		
+
 		// Ouverture du fichier
 		File file = new File(this.pathToPDF);
-		
+
 		// Vérifie que le fichier existe, sinon affiche un message d'erreur
-		if (! file.isFile()) {
-			System.err.println("The file " + this.pathToPDF + " doesn't exist !");
+		if (!file.isFile()) {
+			System.err.println("The file " + this.pathToPDF
+					+ " doesn't exist !");
 		}
 		// Crée un PDFParser
 		try {
@@ -58,7 +55,9 @@ public class PDFExtraction implements PDFExtractor {
 			parsedText = pdfStripper.getText(pdDoc);
 			System.out.println("Extraction du texte réussie !");
 		} catch (Exception e) {
-			System.out.println("An exception occured during parsing PDF Document and text extraction : " + e.getMessage());
+			System.out
+					.println("An exception occured during parsing PDF Document and text extraction : "
+							+ e.getMessage());
 		}
 		// Ferme ce qui doit être fermé
 		finally {
@@ -75,17 +74,14 @@ public class PDFExtraction implements PDFExtractor {
 		this.extractedText = parsedText;
 	}
 
-	
-
 	/***** Getters *****/
-	public String getExtractedText() { return this.extractedText; }
-	
-	
-	
+	public String getExtractedText() {
+		return this.extractedText;
+	}
+
 	/***** Setters *****/
 	public void setExtractedText(String text) {
 		this.extractedText = text;
 	}
-	
 
 }
