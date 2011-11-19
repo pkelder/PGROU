@@ -95,7 +95,7 @@ public class PDFEntireCorrection {
 	 * correspondante la liste des suggestions.
 	 * 
 	 * Principe : Commme Hunspell ne peut corriger qu'un mot à la fois, il faut extraire les mots du texte,
-	 * 			puis les passer un par un dans le correcteur. Si un mot est faut, on le met dans le HashMap
+	 * 			puis les passer un par un dans le correcteur. Si un mot est faux, on le met dans le HashMap
 	 * 			avec sa liste de propositions de corrections.
 	 * 
 	 * L'extraction des mots du texte se fait en précisant les séparateurs. Au besoin vous pouvez compléter
