@@ -1,3 +1,5 @@
+package com.pgrou.pdfcorrection;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -30,7 +32,7 @@ public class Example {
 	 */
 	public static void demonstrateur_1() {
 		// Mettre le path vers le PDF en argument
-		PDFEntireCorrection correctorPDF = new PDFEntireCorrection("/home/tagazok/Documents/Cours/PGROU/PDF à vérifier/Ahmad06.pdf");
+		PDFEntireCorrection correctorPDF = new PDFEntireCorrection("/Users/loukelder/Desktop/P2.pdf");
 
 
 		// Extraction du texte
