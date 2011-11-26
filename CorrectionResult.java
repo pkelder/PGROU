@@ -1,3 +1,5 @@
+package com.pgrou.pdfcorrection;
+
 import com.google.gson.Gson;
 
 /*
@@ -42,13 +44,35 @@ public class CorrectionResult {
 			String markupName) {
 		String result;
 		String mistake;
+		String regex;
 		Gson gson = new Gson();
 
 		while (corrector.hasNextMistake()) {
 			mistake = corrector.nextMistake();
+			regex = "[(" + mistake + ")&&[^(<" + markupName + ".+</"
+					+ markupName + ">)]]";
+			System.out.println("Mistake replace all tiret : "
+					+ mistake.replaceAll("-", "\\-"));
+			System.out.println("Regex = " + regex);
 			result = "<" + markupName + " suggestions=\""
-					+ gson.toJson(corrector.nextSuggestions()) + "\">";
-			this.htmlWithSuggestions.replaceAll(mistake, result);
+					+ gson.toJson(corrector.nextSuggestions()) + "\">"
+					+ mistake + "</" + markupName + ">";
+			this.htmlWithSuggestions = this.htmlWithSuggestions.replaceAll(
+					regex, result);
+
+			/*
+			 * // TEST //
+			 * System.out.println("*********   HTML GENERATION   ************");
+			 * // System.out.println("Mistake : " + mistake); //
+			 * System.out.println("HTML markup : " + result); for (int k = 0; k
+			 * < 2; k++) { System.out.println("ReplaceAll : " +
+			 * this.htmlWithSuggestions.replaceAll(mistake, result)); }
+			 */
 		}
+	}
+
+	/* Getters */
+	public String getHTMLWithSuggestions() {
+		return this.htmlWithSuggestions;
 	}
 }

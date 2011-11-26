@@ -18,17 +18,36 @@ public class Triplet {
 	protected int line;
 	protected String word;
 	protected List<String> correction;
+	protected String message;
 
 	/***** Constructors *****/
 
 	public Triplet() {
 	}
 
-	public Triplet(int one, String two, List<String> three) {
+	public Triplet(int one, String two, List<String> three,String mess) {
 		line = one;
 		word = two;
 		correction = three;
+		message=mess;
 	}
+	
+	
+	
+	/**** Methods *****/
+	
+	public int CompareTo(Triplet anotherTriplet)
+	   {
+	      int resultat = 0;
+	      if (this.line > anotherTriplet.line)
+	         resultat = 1;
+	      if (this.line < anotherTriplet.line)
+	         resultat = -1;
+	      if (this.line == anotherTriplet.line)
+	         resultat = 0;
+	      return resultat;
+	   }
+	
 
 	/***** Getters *****/
 
@@ -38,6 +57,10 @@ public class Triplet {
 
 	public String getWord() {
 		return word;
+	}
+	
+	public String getMessage() {
+		return message;
 	}
 
 	public List<String> getCorrection() {
@@ -52,6 +75,10 @@ public class Triplet {
 
 	public void setWord(String w) {
 		this.word = w;
+	}
+	
+	public void setMessage(String w) {
+		this.message = w;
 	}
 
 	public void setCorrection(List<String> list) {

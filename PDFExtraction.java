@@ -16,6 +16,7 @@ public class PDFExtraction {
 	/***** Attributes *****/
 	public String extractedText = new String();
 	protected String pathToPDF = new String();
+	protected int nbCol;
 
 	/***** Constructors *****/
 	public PDFExtraction(String pathToPDF) {
@@ -25,8 +26,17 @@ public class PDFExtraction {
 	public PDFExtraction() {
 	}
 
+	public PDFExtraction(int nbCol) {
+		this.nbCol=nbCol;		
+	}
+	
+	public PDFExtraction(String pathToPDF, int nbCol) {
+		this.pathToPDF = pathToPDF;
+		this.nbCol=nbCol;		
+	}
+	
 	/*
-	 * M√©thode qui extrait le texte du PDF. Prend le path du PDF, et retourne le
+	 * MÈthode qui extrait le texte du PDF. Prend le path du PDF, et retourne le
 	 * texte extrait
 	 * 
 	 * @param pathToPDF
@@ -38,7 +48,7 @@ public class PDFExtraction {
 		// Ouverture du fichier
 		File file = new File(this.pathToPDF);
 
-		// V√©rifie que le fichier existe, sinon affiche un message d'erreur
+		// VÈrifie que le fichier existe, sinon affiche un message d'erreur
 		if (!file.isFile()) {
 			System.err.println("The file " + this.pathToPDF
 					+ " doesn't exist !");
@@ -58,28 +68,38 @@ public class PDFExtraction {
                         System.exit( 1 );
                     }
                 }
-                PDFTextStripperByArea stripper = new PDFTextStripperByArea();
-                stripper.setSortByPosition( true );
-                Rectangle rect = new Rectangle( 0, 70, 550, 783 );
-                
-                // voir pour passer en param√ãtres la taille du texte (rectangle)
-                
-                stripper.addRegion( "class1", rect );
-                List allPages = document.getDocumentCatalog().getAllPages();
-                int i=allPages.size();
-                for (int j=0; j<i; j++){
-                
-                	PDPage currentPage = (PDPage)allPages.get( j );
-                	stripper.extractRegions( currentPage );
-                
-                	//System.out.println( "Text in the area:" + rect + " page " + (j+1));
-                	//System.out.println( stripper.getTextForRegion( "class1" ) );
-                	parsedText=parsedText+stripper.getTextForRegion("class1");
-
+			List allPages = document.getDocumentCatalog().getAllPages();
+			int x = (int) document.getPageFormat(0).getWidth();
+			int y = (int) document.getPageFormat(0).getHeight();
+			int margeHaut = 70;
+			int margeBas = 30;
+			/*int margeGauche = 10;
+			 *int margeDroite = 10;
+			*/
+			
+			System.out.println(x);
+			System.out.println(y);
+			
+            int i=allPages.size();
+            for (int j=0; j<i; j++){
+				PDPage currentPage = (PDPage)allPages.get( j );
+				parsedText=parsedText+(" page " + (j+1))+"\n";
+				
+                for (int k=0; k<this.nbCol; k++){
+				
+					PDFTextStripperByArea stripper = new PDFTextStripperByArea();
+					stripper.setSortByPosition( true );
+					  // voir pour passer en paramÀtres la taille du texte (rectangle) et le nb de colonnes
+					Rectangle rect = new Rectangle( 0+k*x/nbCol, 70, x/this.nbCol, y-margeHaut -margeBas );
+					stripper.addRegion("colonne", rect);
+					stripper.extractRegions( currentPage );
+					parsedText=parsedText+ "colonne " + (k+1)+"\n";
+					parsedText=parsedText+stripper.getTextForRegion("colonne");
                 }
             }
-	
-	// Ferme ce qui doit √™tre ferm√©
+		}
+
+	// Ferme ce qui doit Ítre fermÈ
             finally
             {
                 if( document != null )
@@ -101,6 +121,14 @@ public class PDFExtraction {
 	/***** Setters *****/
 	public void setExtractedText(String text) {
 		this.extractedText = text;
+	}
+
+	public int getNbCol() {
+		return nbCol;
+	}
+
+	public void setNbCol(int nbCol) {
+		this.nbCol = nbCol;
 	}
 
 }

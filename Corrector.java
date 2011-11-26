@@ -1,3 +1,5 @@
+package com.pgrou.pdfcorrection;
+
 import java.util.List;
 
 public interface Corrector {
