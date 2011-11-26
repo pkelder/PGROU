@@ -34,19 +34,7 @@ public class Triplet {
 	
 	
 	
-	/**** Methods *****/
-	
-	public int CompareTo(Triplet anotherTriplet)
-	   {
-	      int resultat = 0;
-	      if (this.line > anotherTriplet.line)
-	         resultat = 1;
-	      if (this.line < anotherTriplet.line)
-	         resultat = -1;
-	      if (this.line == anotherTriplet.line)
-	         resultat = 0;
-	      return resultat;
-	   }
+
 	
 
 	/***** Getters *****/
@@ -86,3 +74,5 @@ public class Triplet {
 	}
 
 }
+
+

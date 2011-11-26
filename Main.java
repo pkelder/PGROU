@@ -38,9 +38,10 @@ public class Main {
 	 * le HTML avec les suggestions Test fait sur un PDF simple colonne que j'ai
 	 * fait, en Anglais, avec des fautes volontaires.
 	 */
+
 	public static void demonstrateur_3() {
 		// Extraction du texte
-		PDFSimpleExtractor extraction = (PDFSimpleExtractor) getPDFExtractor("/Users/loukelder/Desktop/P2.pdf");
+		PDFSimpleExtractor extraction = (PDFSimpleExtractor) getPDFExtractor("/Users/loukelder/Desktop/P.pdf");
 
 		try {
 			extraction.textExtraction();
@@ -60,28 +61,36 @@ public class Main {
 		gramm.correctText();
 		System.out.println("GRAMMATICAL CORRECTION");
 
-		//displayErrors(gramm);
-		
-		ArrayList<Triplet> result=putErrorsInTriplet(gramm);
-		
+		 displayErrors(gramm);
 
+		ArrayList<Triplet> result = putErrorsInTriplet(gramm);
+
+		
 		// Orthographic correction
-		/*OrthographicCorrection ortho = (OrthographicCorrection) getOrthographicCorrector(extraction
+		OrthographicCorrection ortho = (OrthographicCorrection) getOrthographicCorrector(extraction
 				.getExtractedText());
 
-		
-		  ortho.correctText(); System.out.println("ORTHOGRAPHIC CORRECTION");
-		  displayErrors(ortho,path);
-		 
+		ortho.correctText();
+		System.out.println("ORTHOGRAPHIC CORRECTION"); 
 
+		// displayErrors(ortho);
+
+	//	result.addAll(putErrorsInTriplet(ortho));
+
+		Collections.sort(result, new ComparateurTriplet());
+
+		writeErrors(result);
+		
 		// HTML (Ne marche pas encore. Il faut que je demande de l'aide aux
 		// profs pour une regex un peu compliqu√©.
 
 		System.out.println("HTML");
 		CorrectionResult htmlFactory = new CorrectionResult(
 				extraction.getExtractedText(), ortho, gramm);
-		// htmlFactory.makeHTML();
-		// System.out.println(htmlFactory.getHTMLWithSuggestions());*/
+				
+
+		 htmlFactory.makeHTML();
+		 System.out.println(htmlFactory.getHTMLWithSuggestions());
 	}
 
 	/*
@@ -90,6 +99,34 @@ public class Main {
 	 */
 	protected static void displayErrors(Corrector corrector) {
 
+		Iterator<String> i;
+		String suggestions = null;
+		while (corrector.hasNextMistake()) {
+			System.out.println("Error : " + corrector.nextMistake());
+			for (int j = 0; j < corrector.nextMistakeLine().length; j++) {
+				System.out.println("On line : "
+						+ corrector.nextMistakeLine()[j]);
+
+			}
+			System.out.println("Message : " + corrector.nextMessage());
+
+			i = corrector.nextSuggestions().iterator();
+			suggestions = "";
+			while (i.hasNext()) {
+				suggestions += i.next() + " / ";
+			}
+			System.out.println("Suggestions : " + suggestions);
+			System.out.println("");
+		}
+
+	}
+
+	/* écrit dans un fichier txt la liste des erreurs contenant dans le ArrayList<Triplet> */
+	
+	protected static void writeErrors(ArrayList<Triplet> list) {
+
+		//création du nouveau fichier
+		
 		File fichier = new File("/Users/loukelder/Desktop/error-liste.txt");
 		PrintWriter out = null;
 		try {
@@ -99,64 +136,61 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		Iterator<String> i;
-		String suggestions = null;
-		while (corrector.hasNextMistake()) {
-			System.out.println("Error : " + corrector.nextMistake());
-			for (int j = 0; j < corrector.nextMistakeLine().length; j++) {
-				System.out.println("On line : "
-						+ corrector.nextMistakeLine()[j]);
-				out.write("On line : " + corrector.nextMistakeLine()[j]);
-				out.println();
+		//parcourt de la liste et écriture
+		
+		for (Triplet t:list){
+		
+			
+		out.write("On line : " + t.getLine());
+		out.println();
+		
+		out.write("Word : " + t.getWord());
+		out.println();
 
-			}
-			System.out.println("Message : " + corrector.nextMessage());
-			out.write("Message : " + corrector.nextMessage());
-			out.println();
+		out.write("Message : " + t.getMessage());
+		out.println();
 
-			i = corrector.nextSuggestions().iterator();
-			suggestions = "";
-			while (i.hasNext()) {
-				suggestions += i.next() + " / ";
-			}
-			System.out.println("Suggestions : " + suggestions);
-			out.write("Suggestions : " + suggestions);
-			out.println();
-			System.out.println("");
+		List<String> suggestions=t.getCorrection();
+		String currentSuggestion=null;
+		for (String s:suggestions){
+			currentSuggestion += "/"+s;
 		}
+		out.write("Suggestions : " + currentSuggestion);
+		out.println();
+		
+		}
+		
 		out.close(); // Ferme le flux du fichier, sauvegardant ainsi les données
+
 	}
-	
-	
 
 	protected static ArrayList<Triplet> putErrorsInTriplet(Corrector corrector) {
 
 		Iterator<String> i;
 		String suggestions = null;
-		ArrayList<Triplet> array=new ArrayList<Triplet>();
-		
+		ArrayList<Triplet> array = new ArrayList<Triplet>();
+
 		while (corrector.hasNextMistake()) {
-			Triplet currentTriplet=new Triplet();
-			currentTriplet.word=corrector.nextMistake();
-			currentTriplet.line=corrector.nextMistakeLine()[0];
-			currentTriplet.message=corrector.nextMessage();
-			currentTriplet.correction=new ArrayList<String> ();
+			Triplet currentTriplet = new Triplet();
+			currentTriplet.word = corrector.nextMistake();
+			currentTriplet.line = corrector.nextMistakeLine()[0];
+			currentTriplet.message = corrector.nextMessage();
+			currentTriplet.correction = new ArrayList<String>();
 
 			i = corrector.nextSuggestions().iterator();
 			suggestions = "";
 			while (i.hasNext()) {
-				//suggestions += i.next() + " / ";
+				// suggestions += i.next() + " / ";
 				currentTriplet.correction.add(i.next());
 			}
-			
+
 			System.out.println("Suggestions : " + suggestions);
-			
+
 			array.add(currentTriplet);
 		}
 		return array;
-		
+
 	}
-	
 
 	/*
 	 * D√©monstration de PDFEntireCorrector Je vous conseille de commenter
