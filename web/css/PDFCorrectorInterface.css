@@ -1,0 +1,26 @@
+.orthoerror {
+	color: red;
+}
+
+.grammerror {
+	color: blue;
+}
+
+#suggestions {
+	border: 1px solid black;
+	position: absolute;
+	top: 0px;
+	left:0px;
+	background-color: white;
+	opacity: 1.0;
+}
+
+.suggestion:hover {
+	background-color: black;
+	color: white;
+}
+
+.suggestion {
+	padding: 3px;
+	border: 1px solid black;
+}
