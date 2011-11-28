@@ -8,17 +8,15 @@ import de.danielnaber.languagetool.JLanguageTool;
 import de.danielnaber.languagetool.Language;
 import de.danielnaber.languagetool.rules.RuleMatch;
 
-public class LanguageToolGrammaticalCorrection extends GrammaticalCorrection{
-	
+public class LanguageToolGrammaticalCorrection extends GrammaticalCorrection {
+
 	protected List<RuleMatch> mistakesInfos;
 	protected Iterator<RuleMatch> iterator;
 	protected RuleMatch currentMistakeInfo;
-	
 
 	public LanguageToolGrammaticalCorrection(String textToCorrect) {
 		super(textToCorrect);
 	}
-
 
 	/*
 	 * Méthode qui applique la correction grammaticale au texte donné en
@@ -29,7 +27,6 @@ public class LanguageToolGrammaticalCorrection extends GrammaticalCorrection{
 	 * http://www.languagetool.org/development/api/de
 	 * /danielnaber/languagetool/rules/RuleMatch.html
 	 */
-	
 
 	@Override
 	public void correctText() {
@@ -43,7 +40,7 @@ public class LanguageToolGrammaticalCorrection extends GrammaticalCorrection{
 			corrector.activateDefaultPatternRules();
 
 			// Vérifie le texte
-			mistakes = corrector.check(textToCorrect);
+			mistakes = corrector.check(this.textToCorrect);
 		} catch (Exception e) {
 			System.out
 					.println("Exception occured during gramatical corrector creation");
@@ -119,6 +116,5 @@ public class LanguageToolGrammaticalCorrection extends GrammaticalCorrection{
 	public String nextMessage() {
 		return this.currentMistakeInfo.getMessage();
 	}
-
 
 }

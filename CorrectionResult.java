@@ -1,6 +1,7 @@
 package com.pgrou.pdfcorrection;
 
-import com.google.gson.Gson;
+import java.util.Iterator;
+import java.util.List;
 
 /*
  * Classe générant le résultat de la correction.
@@ -32,8 +33,11 @@ public class CorrectionResult {
 				"grammerror");
 		this.insertSuggestionsFromCorrector(this.orthographicCorrection,
 				"orthoerror");
-		this.htmlWithSuggestions = "<correction>" + this.htmlWithSuggestions
-				+ "</correction>";
+		this.htmlWithSuggestions = "<div id=\"correction\">" + this.htmlWithSuggestions
+				+ "</div>";
+		
+		// On remplace les retours à la ligne par <br/>
+		this.htmlWithSuggestions = this.htmlWithSuggestions.replaceAll("\n", "<br/>");
 	}
 
 	/*
@@ -44,30 +48,35 @@ public class CorrectionResult {
 			String markupName) {
 		String result;
 		String mistake;
+		String suggestions = new String();
+		List<String> listeSuggestion;
+		Iterator<String> iterator;
 		String regex;
-		Gson gson = new Gson();
 
 		while (corrector.hasNextMistake()) {
 			mistake = corrector.nextMistake();
-			regex = "[(" + mistake + ")&&[^(<" + markupName + ".+</"
-					+ markupName + ">)]]";
-			System.out.println("Mistake replace all tiret : "
-					+ mistake.replaceAll("-", "\\-"));
-			System.out.println("Regex = " + regex);
-			result = "<" + markupName + " suggestions=\""
-					+ gson.toJson(corrector.nextSuggestions()) + "\">"
-					+ mistake + "</" + markupName + ">";
-			this.htmlWithSuggestions = this.htmlWithSuggestions.replaceAll(
-					regex, result);
-
-			/*
-			 * // TEST //
-			 * System.out.println("*********   HTML GENERATION   ************");
-			 * // System.out.println("Mistake : " + mistake); //
-			 * System.out.println("HTML markup : " + result); for (int k = 0; k
-			 * < 2; k++) { System.out.println("ReplaceAll : " +
-			 * this.htmlWithSuggestions.replaceAll(mistake, result)); }
-			 */
+			suggestions = "";
+			
+			// On enlève le caractère " des erreurs
+			if (!mistake.equals("\"")) {
+				// Sérialisation de la liste de suggestions
+				listeSuggestion = corrector.nextSuggestions();
+				iterator = listeSuggestion.iterator();
+				while (iterator.hasNext()) {
+					suggestions += iterator.next() + ',';
+				}
+				if (suggestions.length() > 2)
+					suggestions = suggestions.substring(0, suggestions.length() - 1);
+				
+				regex = "(?<!<span class=\"(grammerror|orthoerror)\")" + mistake
+						+ "(?!" + "</span>)";
+				System.out.println("Regex = " + regex);
+				result = "<span class=\"" + markupName + "\" suggestions=\""
+						+ suggestions + "\">"
+						+ mistake + "</span>";
+				this.htmlWithSuggestions = this.htmlWithSuggestions.replaceAll(
+						regex, result);
+			}
 		}
 	}
 

@@ -1,11 +1,9 @@
 package com.pgrou.pdfcorrection;
 
-
 public abstract class OrthographicCorrection implements Corrector {
-	
+
 	/* Attributes */
 	protected String textToCorrect;
-	
 
 	/* Constructors */
 
@@ -13,8 +11,6 @@ public abstract class OrthographicCorrection implements Corrector {
 		this.textToCorrect = textToCorrect;
 	}
 
-	
 	abstract public void correctText();
-
 
 }

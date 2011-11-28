@@ -25,17 +25,12 @@ public class Triplet {
 	public Triplet() {
 	}
 
-	public Triplet(int one, String two, List<String> three,String mess) {
+	public Triplet(int one, String two, List<String> three, String mess) {
 		line = one;
 		word = two;
 		correction = three;
-		message=mess;
+		message = mess;
 	}
-	
-	
-	
-
-	
 
 	/***** Getters *****/
 
@@ -46,7 +41,7 @@ public class Triplet {
 	public String getWord() {
 		return word;
 	}
-	
+
 	public String getMessage() {
 		return message;
 	}
@@ -64,7 +59,7 @@ public class Triplet {
 	public void setWord(String w) {
 		this.word = w;
 	}
-	
+
 	public void setMessage(String w) {
 		this.message = w;
 	}
@@ -74,5 +69,3 @@ public class Triplet {
 	}
 
 }
-
-

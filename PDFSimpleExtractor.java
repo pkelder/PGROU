@@ -21,10 +21,10 @@ public abstract class PDFSimpleExtractor implements PDFExtractor {
 	/*
 	 * Méthode qui extrait le texte du PDF. Prend le path du PDF, et remplit
 	 * l'attribut extractedText avec le texte extrait
-	 * 
 	 */
 
-	abstract public void textExtraction() throws IOException, CryptographyException;
+	abstract public void textExtraction() throws IOException,
+			CryptographyException;
 
 	/***** Getters *****/
 	public String getExtractedText() {
@@ -35,10 +35,7 @@ public abstract class PDFSimpleExtractor implements PDFExtractor {
 	public void setExtractedText(String text) {
 		this.extractedText = text;
 	}
-	
-	
+
 	// fait le lien entre PDFSimpleExtractor et l'extracteur choisit
-	
-	
 
 }

@@ -9,24 +9,22 @@ import java.util.ArrayList;
 
 import com.stibocatalog.hunspell.Hunspell;
 
-public class HunspellOrthographicCorrection extends OrthographicCorrection{
-	
+public class HunspellOrthographicCorrection extends OrthographicCorrection {
 
 	/* Attributes */
 	protected HashMap<String, List<String>> mistakesAndSuggestions;
 	protected Set<String> mistakes;
 	protected Iterator<String> iterator;
 	protected String currentMistake;
-	
 
 	public HunspellOrthographicCorrection(String textToCorrect) {
 		super(textToCorrect);
 	}
-	
+
 	/*
 	 * Méthode qui applique la correction orthographique au texte donné en
-	 * argument. Retourne un HashMap contenant en clés les mots mal écrits,
-	 * avec pour valeur correspondante la liste des suggestions.
+	 * argument. Retourne un HashMap contenant en clés les mots mal écrits, avec
+	 * pour valeur correspondante la liste des suggestions.
 	 * 
 	 * Principe : Commme Hunspell ne peut corriger qu'un mot à la fois, il faut
 	 * extraire les mots du texte, puis les passer un par un dans le correcteur.
@@ -63,7 +61,7 @@ public class HunspellOrthographicCorrection extends OrthographicCorrection{
 			String currentWord = new String();
 			for (int i = 0; i < length; i++) {
 				currentWord = words[i];
-				// On exclut les caractères réservés par les regex
+				// On exclut certains caractères
 				if (dico.misspelled(currentWord)
 						&& !"#!^$()[]{}?+*.\\|".contains(currentWord)) {
 					result.put(currentWord, dico.suggest(currentWord));
@@ -138,6 +136,5 @@ public class HunspellOrthographicCorrection extends OrthographicCorrection{
 	public String nextMessage() {
 		return null;
 	}
-
 
 }

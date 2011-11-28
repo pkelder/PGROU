@@ -23,18 +23,18 @@ public class Main {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) {
-		// Démonstrateur 1
+		// DÃ©monstrateur 1
 		// demonstrateur_1();
 
-		// Démonstrateur 2
+		// DÃ©monstrateur 2
 		// demonstrateur_2();
 
-		// Démonstrateur 3
+		// DÃ©monstrateur 3
 		demonstrateur_3();
 	}
 
 	/*
-	 * Démonstrateur 3 Utilise les interfaces Corrector et Extractor et produit
+	 * DÃ©monstrateur 3 Utilise les interfaces Corrector et Extractor et produit
 	 * le HTML avec les suggestions Test fait sur un PDF simple colonne que j'ai
 	 * fait, en Anglais, avec des fautes volontaires.
 	 */
@@ -61,40 +61,38 @@ public class Main {
 		gramm.correctText();
 		System.out.println("GRAMMATICAL CORRECTION");
 
-		 displayErrors(gramm);
+		displayErrors(gramm);
 
 		ArrayList<Triplet> result = putErrorsInTriplet(gramm);
 
-		
 		// Orthographic correction
 		OrthographicCorrection ortho = (OrthographicCorrection) getOrthographicCorrector(extraction
 				.getExtractedText());
 
 		ortho.correctText();
-		System.out.println("ORTHOGRAPHIC CORRECTION"); 
+		System.out.println("ORTHOGRAPHIC CORRECTION");
 
 		// displayErrors(ortho);
 
-	//	result.addAll(putErrorsInTriplet(ortho));
+		// result.addAll(putErrorsInTriplet(ortho));
 
 		Collections.sort(result, new ComparateurTriplet());
 
 		writeErrors(result);
-		
+
 		// HTML (Ne marche pas encore. Il faut que je demande de l'aide aux
-		// profs pour une regex un peu compliqué.
+		// profs pour une regex un peu compliquÃ©.
 
 		System.out.println("HTML");
 		CorrectionResult htmlFactory = new CorrectionResult(
 				extraction.getExtractedText(), ortho, gramm);
-				
 
-		 htmlFactory.makeHTML();
-		 System.out.println(htmlFactory.getHTMLWithSuggestions());
+		htmlFactory.makeHTML();
+		System.out.println(htmlFactory.getHTMLWithSuggestions());
 	}
 
 	/*
-	 * Prend un Corrector, et affiche les erreurs dans la console. Très utile
+	 * Prend un Corrector, et affiche les erreurs dans la console. TrÃ¨s utile
 	 * pour tester !
 	 */
 	protected static void displayErrors(Corrector corrector) {
@@ -121,46 +119,48 @@ public class Main {
 
 	}
 
-	/* �crit dans un fichier txt la liste des erreurs contenant dans le ArrayList<Triplet> */
-	
+	/*
+	 * crit dans un fichier txt la liste des erreurs contenant dans le
+	 * ArrayList<Triplet>
+	 */
+
 	protected static void writeErrors(ArrayList<Triplet> list) {
 
-		//cr�ation du nouveau fichier
-		
+		// cration du nouveau fichier
+
 		File fichier = new File("/Users/loukelder/Desktop/error-liste.txt");
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(new FileWriter(fichier));
 		} catch (IOException e) {
-			System.out.println("cr�ation du fichier impossible");
+			System.out.println("cration du fichier impossible");
 			e.printStackTrace();
 		}
 
-		//parcourt de la liste et �criture
-		
-		for (Triplet t:list){
-		
-			
-		out.write("On line : " + t.getLine());
-		out.println();
-		
-		out.write("Word : " + t.getWord());
-		out.println();
+		// parcourt de la liste et criture
 
-		out.write("Message : " + t.getMessage());
-		out.println();
+		for (Triplet t : list) {
 
-		List<String> suggestions=t.getCorrection();
-		String currentSuggestion=null;
-		for (String s:suggestions){
-			currentSuggestion += "/"+s;
+			out.write("On line : " + t.getLine());
+			out.println();
+
+			out.write("Word : " + t.getWord());
+			out.println();
+
+			out.write("Message : " + t.getMessage());
+			out.println();
+
+			List<String> suggestions = t.getCorrection();
+			String currentSuggestion = null;
+			for (String s : suggestions) {
+				currentSuggestion += "/" + s;
+			}
+			out.write("Suggestions : " + currentSuggestion);
+			out.println();
+
 		}
-		out.write("Suggestions : " + currentSuggestion);
-		out.println();
-		
-		}
-		
-		out.close(); // Ferme le flux du fichier, sauvegardant ainsi les donn�es
+
+		out.close(); // Ferme le flux du fichier, sauvegardant ainsi les donnes
 
 	}
 
@@ -193,7 +193,7 @@ public class Main {
 	}
 
 	/*
-	 * Démonstration de PDFEntireCorrector Je vous conseille de commenter
+	 * DÃ©monstration de PDFEntireCorrector Je vous conseille de commenter
 	 * quelques truc si vous voulez pas avoir la console qui explose :)
 	 * 
 	 * Version 1 - Corrections faites sur le texte extrait du PDF.
@@ -209,8 +209,8 @@ public class Main {
 	 * System.out.println(textToCorrect);
 	 * 
 	 * 
-	 * //finalResult est une liste d'objets Triplet, r�sumant l'ensemble des
-	 * erreurs trouv�es //c'est � partir de �a qu'on cr�era tous les
+	 * //finalResult est une liste d'objets Triplet, rï¿½sumant l'ensemble des
+	 * erreurs trouvï¿½es //c'est ï¿½ partir de ï¿½a qu'on crï¿½era tous les
 	 * fichiers de sortie
 	 * 
 	 * List<Triplet> finalResult=new ArrayList<Triplet>();
@@ -228,15 +228,15 @@ public class Main {
 	 * 
 	 * while (i.hasNext() && counter < 20) { currentBadWord = i.next();
 	 * 
-	 * //test �ventuellement � revoir: on regarde juste ici si
+	 * //test ï¿½ventuellement ï¿½ revoir: on regarde juste ici si
 	 * currentBadWord est l'entier de la ligne suivante
 	 * 
 	 * if (Integer.parseInt(currentBadWord)==currentLine+1){ //on a atteint un
-	 * s�parateur de lignes: on passe � la ligne suivante currentLine++; }
+	 * sï¿½parateur de lignes: on passe ï¿½ la ligne suivante currentLine++; }
 	 * 
 	 * else{
 	 * 
-	 * //cr�ation de la liste des suggestions du mot en cours List<String>
+	 * //crï¿½ation de la liste des suggestions du mot en cours List<String>
 	 * currentSuggestion=new ArrayList<String>(); j =
 	 * orthoMistakesAndSuggestions.get(currentBadWord).iterator();
 	 * 
@@ -251,7 +251,7 @@ public class Main {
 	 * 
 	 * }
 	 * 
-	 * //� quoi sert ce compteur? on limite le nombre de suggestions � 20?
+	 * //ï¿½ quoi sert ce compteur? on limite le nombre de suggestions ï¿½ 20?
 	 * counter++; }
 	 * 
 	 * 
@@ -263,13 +263,13 @@ public class Main {
 	 * // Pour visualiser le contenu de grammMistakesAndInfos for (RuleMatch
 	 * currentMistake : grammMistakesAndInfos) {
 	 * 
-	 * //cr�ation du Triplet de l'erreur //� v�rifier:
-	 * currentMistake.getMessage() renvoie bien le mot concern� par l'erreur?
+	 * //crï¿½ation du Triplet de l'erreur //ï¿½ vï¿½rifier:
+	 * currentMistake.getMessage() renvoie bien le mot concernï¿½ par l'erreur?
 	 * Triplet currentTriplet=new
 	 * Triplet(currentMistake.getEndLine(),currentMistake
 	 * .getMessage(),currentMistake.getSuggestedReplacements());
 	 * 
-	 * //ajout du triplet � la finalResult finalResult.add(currentTriplet);
+	 * //ajout du triplet ï¿½ la finalResult finalResult.add(currentTriplet);
 	 * 
 	 * System.out.println("Potential error at line " +
 	 * currentMistake.getEndLine() + ", column " + currentMistake.getColumn() +
