@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../print.xsl" ?>
+<?xml-stylesheet type="text/css" href="../rules.css"
+title="Easy editing stylesheet" ?>
+<!--
+Breton Grammar and Typo Rules for LanguageTool
+Copyright (C) 2011 Dominique Pellé
+$Id: grammar.xml,v 1.34 2011-02-12 14:57:58 dominikoeo Exp $
+-->
+<rules lang="eo"
+       xsi:noNamespaceSchemaLocation="../rules.xsd"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Mutations adoucissantes -->
+  <category name="kemmadurioù">
+    <rulegroup id="KEMM_DRE_VLOTAAT_AR" name="kemmadur dre vlotaat goude ar gerr-mell.">
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]r</token>
+          <token regexp="yes" postag="N m s">k.*
+            <exception postag="N f s"/>
+          </token>
+        </pattern>
+        <message>Goude ar ger-mell «\1» e zlefe bezañ ur c’hemmadur dre vlotaat gant an anv unan gourel «\2» . Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="c’h$1"/></suggestion>?</message>
+        <example type="incorrect">Ur <marker>karr</marker> nevez am eus prenet.</example>
+        <example type="correct">Ur c’harr nevez am eus prenet.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]r</token>
+          <token regexp="yes" postag="N f s">k.*
+            <exception postag="N m s"/>
+          </token>
+        </pattern>
+        <message>Goude ar ger-mell «\1» e zlefe bezañ ur c’hemmadur dre vlotaat gant an anv unan benel «\2» . Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="g$1"/></suggestion>?</message>
+        <example type="incorrect">Ar <marker>kador</marker> a zo war an daol.</example>
+        <example type="correct">Ar gador a zo war an daol.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]r</token>
+          <token regexp="yes" postag="N f s">p.*
+            <exception regexp="yes">(plac’h|gar|greg|gavotenn)(ig)?</exception>
+            <exception postag="N m s"/>
+          </token>
+        </pattern>
+        <message>Goude ar ger-mell «\1» e zlefe bezañ ur c’hemmadur dre vlotaat gant an anv unan benel «\2» . Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="b$1"/></suggestion>?</message>
+        <example type="incorrect">Ur <marker>paner</marker> bras eo.</example>
+        <example type="correct">Ur baner bras eo.</example>
+        <example type="correct">Ur plac’h koant eo.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]n</token>
+          <token regexp="yes" postag="N f s">t.*
+            <exception postag="N m s"/>
+          </token>
+        </pattern>
+        <message>Goude ar ger-mell «\1» e zlefe bezañ ur c’hemmadur dre vlotaat gant an anv unan benel «\2» . Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="d$1"/></suggestion>?</message>
+        <example type="incorrect">Debret em eus un <marker>tartezenn</marker>.</example>
+        <example type="correct">Debret em eus un dartezenn.</example>
+        <example type="correct">Klevet em eus un taol fusilh.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]r</token>
+          <token regexp="yes" postag="N f s">g[^w].*
+            <exception regexp="yes" inflected="yes">k.*</exception>
+            <exception postag="N m s"/>
+          </token>
+        </pattern>
+        <message>Goude ar ger-mell «\1» e zlefe bezañ ur c’hemmadur dre vlotaat gant an anv unan benel «\2» . Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="c’h$1"/></suggestion>?</message>
+        <example type="incorrect">Sell ar <marker>godell</marker>.</example>
+        <example type="correct">Sell ar c’hodell.</example>
+        <example type="correct">Ur grampouzhenn am bo.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]r</token>
+          <token regexp="yes" postag="N f s">gw.*
+            <exception postag="N m s"/>
+          </token>
+        </pattern>
+        <message>Goude ar ger-mell «\1» e zlefe bezañ ur c’hemmadur dre vlotaat gant an anv unan benel «\2» . Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="$1"/></suggestion>?</message>
+        <example type="incorrect">Kemerit ar <marker>gwerenn</marker>.</example>
+        <example type="correct">Kemerit ar werenn.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]r</token>
+          <token regexp="yes" postag="N f s">b.*  
+            <exception regexp="yes" inflected="yes">p.*</exception>
+            <exception postag="N m s"/>
+          </token>
+        </pattern>
+        <message>Goude ar ger-mell «\1» e zlefe bezañ ur c’hemmadur dre vlotaat gant an anv unan benel «\2» . Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="v$1"/></suggestion>?</message>
+        <example type="incorrect">Pelec’h emañ ar <marker>bag</marker>?</example>
+        <example type="correct">Pelec’h emañ ar vag?</example>
+        <example type="correct">Pelec’h emañ ar voutailh?</example>
+        <example type="correct">Pelec’h emañ ar baner?</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]r</token>
+          <token regexp="yes" postag="N f s">m.*
+            <exception postag="N m s"/>
+          </token>
+        </pattern>
+        <message>Goude ar ger-mell «\1» e zlefe bezañ ur c’hemmadur dre vlotaat gant an anv unan benel «\2» . Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="v$1"/></suggestion>?</message>
+        <example type="incorrect">Pounner eo ar <marker>malizenn</marker>.</example>
+        <example type="correct">Pounner eo ar valizenn.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]n</token>
+          <token>dor</token>
+        </pattern>
+        <message>Fellout a ra deoc’h skrivan <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="n$1"/></suggestion>?</message>
+        <example type="incorrect">Sett an <marker>dor</marker> ’ta.</example>
+        <example type="correct">Sett an nor ’ta.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]n</token>
+          <token>tra</token>
+        </pattern>
+        <message>Fellout a ra deoc’h skrivan <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="d$1"/></suggestion>?</message>
+        <example type="incorrect">Un <marker>tra</marker></example>
+        <example type="correct">Un <marker>dra</marker></example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">[au]r</token>
+          <token>brud</token>
+        </pattern>
+        <message>Fellout a ra deoc’h skrivan <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="v$1"/></suggestion>?</message>
+        <example type="incorrect">Ur <marker>brud</marker></example>
+        <example type="correct">Ur vrud</example>
+      </rule>
+    </rulegroup>
+    <rulegroup id="KEMM_DRE_VLOTAAT_GER" name="kemmadur dre vlotaat goude gerioù.">
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">da|ne|pa|re|daou|div|dindan|diwar|dre|eme|gwall|holl|seul|war</token>
+          <token regexp="yes">k.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre vlotaat a zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="g$1"/></suggestion>?</message>
+        <example type="incorrect">Gwall <marker>kozh</marker> eo da garr.</example>
+        <example type="correct">Gwall gozh eo da garr.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">da|ne|pa|re|daou|div|dindan|diwar|dre|eme|gwall|holl|seul|war</token>
+          <token regexp="yes">t.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre vlotaat a zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="d$1"/></suggestion>?</message>
+        <example type="incorrect">Da <marker>tad</marker> a zo er gêr.</example>
+        <example type="correct">Da dad a zo er gêr.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">da|ne|pa|re|daou|div|dindan|diwar|dre|eme|gwall|holl|seul|war</token>
+          <token regexp="yes">p.*
+            <exception>pe</exception>
+          </token>
+        </pattern>
+        <message>Ur c’hemmadur dre vlotaat a zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="b$1"/></suggestion>?</message>
+        <example type="incorrect">Ne <marker>plij</marker> ket din komz nederlandeg.</example>
+        <example type="correct">Ne blij ket din komz nederlandeg.</example>
+        <example type="correct">Gwelet em eus anazhañ div pe deir gwech marteze.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">da|ne|pa|re|daou|div|dindan|diwar|dre|eme|gwall|holl|seul|war</token>
+          <token regexp="yes">gw.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre vlotaat a zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match="..(.*)" regexp_replace="w$1"/></suggestion>?</message>
+        <example type="incorrect">Da <marker>gwele</marker> a zo ken bras.</example>
+        <example type="correct">Da wele a zo ken bras.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">da|ne|pa|re|daou|div|dindan|diwar|dre|eme|gwall|holl|seul|war</token>
+          <token regexp="yes">m.*
+            <exception regexp="yes" inflected="yes">[mp][ae]</exception>
+          </token>
+        </pattern>
+        <message>Ur c’hemmadur dre vlotaat a zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="v$1"/></suggestion>?</message>
+        <example type="incorrect">Amañ emañ da <marker>mamm</marker>.</example>
+        <example type="correct">Amañ emañ da vamm.</example>
+        <example type="correct">Dre ma faot.</example>
+        <example type="correct">Ne gomprenit dre m’az oc’h sot.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="2">
+          <token>en</token>
+          <token>em</token>
+          <token regexp="yes">k.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre vlotaat a zlefe bezañ goude «\1 \2». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="g$1"/></suggestion>?</message>
+        <example type="incorrect">En em <marker>kavout</marker> a raimp dirak an iliz.</example>
+        <example type="correct">En em <marker>gavout</marker> a raimp dirak an iliz.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="2">
+          <token>en</token>
+          <token>em</token>
+          <token regexp="yes">gw.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre vlotaat a zlefe bezañ goude ar ger «\1 \2». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="$1"/></suggestion>?</message>
+        <example type="incorrect">En em <marker>gwelet</marker> a raen.</example>
+        <example type="correct">En em <marker>welet</marker> a raen.</example>
+      </rule>
+    </rulegroup>
+
+    <!-- Mutations renforçantes -->
+    <rulegroup id="KEMM_DRE_GALETAAT" name="kemmedur dre galetaat">
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">ho|ez|az</token>
+          <token regexp="yes">b.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre galetaat a zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="p$1"/></suggestion>?</message>
+        <example type="incorrect">Bras eo ho <marker>breur</marker>.</example>
+        <example type="correct">Bras eo ho preur.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">ho|ez|az</token>
+          <token regexp="yes">d.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre galetaat a zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="p$1"/></suggestion>?</message>
+        <example type="incorrect">Pegen brav eo ho <marker>dilhad</marker>.</example>
+        <example type="correct">Pegen brav eo ho tilhad.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">ho|ez|az</token>
+          <token regexp="yes">g.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre galetaat a zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="k$1"/></suggestion>?</message>
+        <example type="incorrect">Mat eo ho <marker>gwastell</marker>.</example>
+        <example type="correct">Mat eo ho kwastell.</example>
+        <example type="incorrect">Lous eo ho <marker>genoù</marker>.</example>
+        <example type="correct">Lous eo ho kenoù.</example>
+      </rule>
+    </rulegroup>
+
+    <!-- Mutations spirantes -->
+    <rulegroup id="KEMM_DRE_C_HWEZHADENNIN" name="kemmadur dre c’hwezhadenniñ">
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">va|he|em|teir|tri|peder|pevar|nav</token>
+          <token regexp="yes">t.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre c’hwezhadenniñ zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="z$1"/></suggestion>?</message>
+        <example type="incorrect">Va <marker>tad</marker> a gomz brezhoneg.</example>
+        <example type="correct">Va zad a gomz brezhoneg.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">va|he|em|teir|tri|peder|pevar|nav</token>
+          <token regexp="yes">k.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre c’hwezhadenniñ zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="c’h$1"/></suggestion>?</message>
+        <example type="incorrect">Tri <marker>karr</marker> em eus.</example>
+        <example type="correct">Tri c’harr em eus.</example>
+      </rule>
+      <rule>
+        <pattern mark_from="1">
+          <token regexp="yes">va|he|em|teir|tri|peder|pevar|nav</token>
+          <token regexp="yes">p.*</token>
+        </pattern>
+        <message>Ur c’hemmadur dre c’hwezhadenniñ zlefe bezañ goude ar ger «\1». Fellout a ra deoc’h skrivañ <suggestion><match no="2" regexp_match=".(.*)" regexp_replace="c’h$1"/></suggestion>?</message>
+        <example type="incorrect">Re ziwezhat out va <marker>paotr</marker>!</example>
+        <example type="correct">Re ziwezhat out va faotr!</example>
+      </rule>
+    </rulegroup>
+  </category>
+
+  <!-- Articles -->
+  <category name="gerioù al, ul, el, hol">
+    <rule id="AL" name="gerioù al, ul, el, hol">
+      <pattern mark_to="-1">
+        <token regexp="yes">([aeu]|ho)[nr]<exception postag="L ppre"/></token>
+        <token regexp="yes">l.*</token>
+      </pattern>
+      <message>Ar ger «\1» a zlefe bezañ <suggestion><match no="1" regexp_match="(.*)." regexp_replace="$1l"/></suggestion> dirak ur ger a grog gant ar gensonenn «l».</message>
+      <example type="incorrect"><marker>Ur</marker> levr a zo ganin.</example>
+      <example type="incorrect"><marker>An</marker> levr a zo ganin.</example>
+      <example type="correct">Ul levr a zo ganin.</example>
+      <example type="correct">Al levr a zo ganin.</example>
+      <example type="incorrect">Al levr-mañ emañ <marker>er</marker> levraoueg.</example>
+      <example type="correct">Al levr-mañ emañ el levraoueg.</example>
+      <example type="incorrect">Tev eo <marker>hon</marker> levr.</example>
+      <example type="correct">Tev eo hol levr.</example>
+      <example type="correct">Kouezhet on en ur lammat.</example>
+    </rule>
+    <rule id="AN" name="gerioù an, un, en, hon">
+      <pattern mark_to="-1">
+        <token regexp="yes">([aeu]|ho)[lr]<exception postag="L ppre"/></token>
+        <token regexp="yes">[ndthaeiou].*</token>
+      </pattern>
+      <message>Ar ger «\1» a zlefe bezañ <suggestion><match no="1" regexp_match="(.*)." regexp_replace="$1n"/></suggestion> dirak ur ger a grog gant al lizherennoù «n, d, t, h, a, e, i, o u».</message>
+      <example type="incorrect">Tomm eo <marker>ar</marker> tan.</example>
+      <example type="correct">Tomm eo an tan.</example>
+      <example type="correct">Sellet e ra en ur dreuziñ.</example>
+    </rule>
+    <rule id="AR" name="ger ar, ur, er, hor">
+      <pattern mark_to="-1">
+        <token regexp="yes">([aeu]|ho)[ln]</token>
+        <token regexp="yes">[bcfgjkmprsvwyz].*</token>
+      </pattern>
+      <message>Ar ger «\1» a zlefe bezañ <suggestion><match no="1" regexp_match="(.*)." regexp_replace="$1r"/></suggestion> dirak ur ger na grog ket gant al lizherennoù «n, d, t, h, a, e, i, o u».</message>
+      <example type="incorrect"><marker>An</marker> vell-droad a blij din.</example>
+      <example type="correct">Ar vell-droad a blij din.</example>
+    </rule>
+  </category>
+
+  <category name="NIVER">
+    <rule id="DAOU" name="daou">
+      <pattern mark_to="-1">
+        <token>daou</token>
+        <token postag_regexp="yes" postag="N f.*">
+          <exception postag_regexp="yes" postag="N m.*"/>
+        </token>
+      </pattern>
+      <message>Implijit <suggestion><match no="1" regexp_match="aou" regexp_replace="iv"/></suggestion> dirak ar ger benel «\2».</message>
+      <example type="incorrect"><marker>Daou</marker> blac’h.</example>
+      <example type="correct">Div blac’h.</example>
+    </rule>
+    <rule id="DIV" name="div">
+      <pattern mark_to="-1">
+        <token>div</token>
+        <token postag_regexp="yes" postag="N m.*">
+          <exception postag_regexp="yes" postag="N f.*"/>
+        </token>
+      </pattern>
+      <message>Implijit <suggestion><match no="1" regexp_match="iv" regexp_replace="aou"/></suggestion> dirak ar ger gourel «\2».</message>
+      <example type="incorrect"><marker>Div</marker> paotr.</example>
+      <example type="correct">Daou paotr.</example>
+    </rule>
+    <rule id="TRI" name="tri">
+      <pattern mark_to="-1">
+        <token>tri</token>
+        <token postag_regexp="yes" postag="N f.*">
+          <exception postag_regexp="yes" postag="N m.*"/>
+        </token>
+      </pattern>
+      <message>Implijit <suggestion><match no="1" regexp_match="ri" regexp_replace="eir"/></suggestion> dirak ar ger benel «\2».</message>
+      <example type="incorrect"><marker>Tri</marker> blac’h.</example>
+      <example type="correct">Teir blac’h.</example>
+    </rule>
+    <rule id="TEIR" name="teir">
+      <pattern mark_to="-1">
+        <token>teir</token>
+        <token postag_regexp="yes" postag="N m.*">
+          <exception postag_regexp="yes" postag="N f.*"/>
+        </token>
+      </pattern>
+      <message>Implijit <suggestion><match no="1" regexp_match="eir" regexp_replace="ri"/></suggestion> dirak ar ger gourel «\2».</message>
+      <example type="incorrect"><marker>Teir</marker> paotr.</example>
+      <example type="correct">Tri paotr.</example>
+    </rule>
+    <rule id="PEVAR" name="pevar">
+      <pattern mark_to="-1">
+        <token>pevar</token>
+        <token postag_regexp="yes" postag="N f.*">
+          <exception postag_regexp="yes" postag="N m.*"/>
+        </token>
+      </pattern>
+      <message>Implijit <suggestion><match no="1" regexp_match="var" regexp_replace="der"/></suggestion> dirak ar ger benel «\2».</message>
+      <example type="incorrect"><marker>Pevar</marker> blac’h.</example>
+      <example type="correct">Peder blac’h.</example>
+    </rule>
+    <rule id="PEDER" name="peder">
+      <pattern mark_to="-1">
+        <token>peder</token>
+        <token postag_regexp="yes" postag="N m.*">
+          <exception postag_regexp="yes" postag="N f.*"/>
+        </token>
+      </pattern>
+      <message>Implijit <suggestion><match no="1" regexp_match="der" regexp_replace="var"/></suggestion> dirak ar ger gourel «\2».</message>
+      <example type="incorrect"><marker>Peder</marker> paotr.</example>
+      <example type="correct">Pevar paotr.</example>
+    </rule>
+  </category>
+
+  <category name="A_BEP_SORT">
+    <rulegroup id="HE_HEC_H" name="he, hec’h">
+      <rule>
+        <pattern mark_to="-1">
+          <token regexp="yes">h[eo]</token>
+          <token regexp="yes">[aeiou].*</token>
+        </pattern>
+        <message>Ar ger «\1» a zlefe bezañ <suggestion><match no="1" regexp_match="$" regexp_replace="c’h"/></suggestion> dirak ur ger a grog gant ur vogalenn.</message>
+        <example type="incorrect">Deuet eo <marker>he</marker> amezeg.</example>
+        <example type="correct">Deuet eo hec’h amezeg.</example>
+      </rule>
+    </rulegroup>
+    <rulegroup id="HA_HAG" name="ha, hag">
+      <rule>
+        <pattern mark_to="-1">
+          <token>ha</token>
+          <token regexp="yes">[aeiou].*</token>
+        </pattern>
+        <message>Ar ger «\1» a zlefe bezañ <suggestion><match no="1" regexp_match="$" regexp_replace="g"/></suggestion> dirak ur ger a grog gant ur vogalenn.</message>
+        <example type="incorrect">Kozh <marker>ha</marker> uhel eo an iliz.</example>
+        <example type="correct">Kozh hag uhel eo an iliz.</example>
+      </rule>
+      <rule>
+        <pattern mark_to="-1">
+          <token>hag</token>
+          <token regexp="yes">[bcdfgjklmnprstvwyz].*</token>
+        </pattern>
+        <message>Ar ger «\1» a zlefe bezañ <suggestion><match no="1" regexp_match=".$" regexp_replace=""/></suggestion> dirak ur ger a grog gant ur vogalenn.</message>
+        <example type="incorrect">Brav <marker>hag</marker> fin eo.</example>
+        <example type="correct">Brav <marker>ha</marker> fin eo.</example>
+      </rule>
+    </rulegroup>
+    <rule id="DAM" name="da + ma = da’m">
+      <pattern>
+        <token>da</token>
+        <token>ma</token>
+      </pattern>
+      <message>«\1 \2» a zlefe bezañ skrivet <suggestion>\1’m</suggestion>.</message>
+      <example type="incorrect">Lavaret em eus <marker>da ma</marker> zad.</example>
+      <example type="correct">Lavaret em eus da’m zad.</example>
+    </rule>
+    <rule id="DAZ" name="da + da = da’z">
+      <pattern>
+        <token>da</token>
+        <token>da</token>
+      </pattern>
+      <message>«\1 \2» a zlefe bezañ skrivet <suggestion>\1’z</suggestion>.</message>
+      <example type="incorrect">Lavaret em eus <marker>da da</marker> dad.</example>
+      <example type="correct">Lavaret em eus da’z tad.</example>
+    </rule>
+    <rule id="EZ" name="e + da = ez">
+      <pattern>
+        <token>e</token>
+        <token>da</token>
+      </pattern>
+      <message>«\1 \2» a zlefe bezañ skrivet <suggestion>ez</suggestion>.</message>
+      <example type="incorrect">Poan az peus <marker>e da</marker> dreid?</example>
+      <example type="correct">Poan az peus ez treid?</example>
+    </rule>
+    <rulegroup id="TAMM_BANNE" name="tamm pe banne">
+      <rule>
+        <pattern mark_to="-1">
+          <token regexp="yes">tamm(ig)?</token>
+          <token regexp="yes">dour|gwin|sitr|chistr|kafe</token>
+        </pattern>
+        <message>Implijit <suggestion>banne</suggestion> dirak an evajoù.</message>
+        <example type="incorrect">Un <marker>tamm</marker> kafe tomm am bo.</example>
+        <example type="correct">Ur banne kafe tomm am bo.</example>
+      </rule>
+      <rule>
+        <pattern mark_to="-1">
+          <token regexp="yes">(banne|lomm)(ig)?</token>
+          <token regexp="yes">bara|kig</token>
+        </pattern>
+        <message>Implijit ket <suggestion>tamm</suggestion>.</message>
+        <example type="incorrect">Ur <marker>banne</marker> bara am bo.</example>
+        <example type="correct">Un tamm bara am bo.</example>
+      </rule>
+    </rulegroup>
+  </category>
+
+</rules>

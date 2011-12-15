@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+	<servlet> 
+		<servlet-class>com.servlet.upload.FileUpload</servlet-class>
+		<servlet-name>fileUpload</servlet-name>
+	</servlet>	
+	
+	<servlet> 
+		<servlet-class>com.servlet.upload.WriteFileCorrection</servlet-class>
+		<servlet-name>writeCorrection</servlet-name>
+	</servlet>	
+	
+	
+	<servlet-mapping> 
+		<servlet-name>fileUpload</servlet-name> 
+		<url-pattern>/</url-pattern>
+	</servlet-mapping> 
+	
+	<servlet-mapping> 
+		<servlet-name>writeCorrection</servlet-name> 
+		<url-pattern>/</url-pattern>
+	</servlet-mapping> 
+	
+	
+
+</web-app>
