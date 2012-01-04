@@ -30,14 +30,19 @@ public class LanguageToolGrammaticalCorrection extends GrammaticalCorrection {
 
 	@Override
 	public void correctText() {
+		
+		System.out.println("entree dans correctText gramm");
 		JLanguageTool corrector = null; // Correcteur grammatical
 		List<RuleMatch> mistakes = null; // Liste des erreurs
 		try {
+			System.out.println("fin ");
 			// Sélection de la langue, création du correcteur
 			corrector = new JLanguageTool(Language.FRENCH);
-
+			
+			System.out.println("fin r�glage ...");
 			// Réglage obligatoire (pas chercher à comprendre)
 			corrector.activateDefaultPatternRules();
+			
 			// Vérifie le texte
 			mistakes = corrector.check(this.textToCorrect);
 		} catch (Exception e) {

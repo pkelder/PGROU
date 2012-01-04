@@ -93,7 +93,7 @@ window.onload = init;
 		</form>
 <br/>
 
-Si la list des errors ne s'affiche pas, rafraichir la page  <a href="javascript:location.reload(true)">Ici</a>
+Si la liste des erreurs ne s'affiche pas, rafraichir la page  <a href="javascript:location.reload(true)">Ici</a>
 
 <br/>
 <p>Pour corriger un nouveau fichier, c'est par <a href="<%=request.getContextPath()%>/"> ici</a></p>

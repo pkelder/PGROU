@@ -52,7 +52,6 @@ public class FileUpload extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		processRequest(request, response);
-		//request.getRequestDispatcher("result.jsp").forward(request, response);
 	}
 
 	/**

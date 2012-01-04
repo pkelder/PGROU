@@ -42,7 +42,7 @@ public class HunspellOrthographicCorrection extends OrthographicCorrection {
 		String separators = new String("\\s|\\.|:|,|;"); // Liste des
 		// séparateurs qui déterminent comment découper le texte.
 		String dictionaryPath = new String(
-				"/home/tagazok/Documents/Cours/PGROU/Hunspell_Dictionaries/en_GB"); // Path
+				"/ajouter_ici_chemin_du_dictionnaire/Hunspell_Dictionaries/fr_FR"); // Path
 		// to the dictionary
 		Hunspell.Dictionary dico = null; // Hunspell dico
 		HashMap<String, List<String>> result = new HashMap<String, List<String>>(); // Résultat

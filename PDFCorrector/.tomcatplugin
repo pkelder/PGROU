@@ -5,7 +5,7 @@
     <reloadable>true</reloadable>
     <redirectLogger>false</redirectLogger>
     <updateXml>true</updateXml>
-    <warLocation></warLocation>
+    <warLocation>/Users/loukelder/Desktop/PDFCorrector.war</warLocation>
     <extraInfo></extraInfo>
     <webPath>/PDFCorrector</webPath>
 </tomcatProjectProperties>

@@ -25,8 +25,6 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
-		//demonstrateur_3("/Users/loukelder/Desktop/P.pdf");
-		
 	}
 
 	/*
@@ -64,7 +62,6 @@ public class Main {
 		GrammaticalCorrection gramm = (GrammaticalCorrection) getGrammaticalCorrector(extraction
 				.getExtractedText());
 
-		
 		gramm.correctText();
 		System.out.println("GRAMMATICAL CORRECTION");
 
@@ -76,14 +73,14 @@ public class Main {
 		OrthographicCorrection ortho = (OrthographicCorrection) getOrthographicCorrector(extraction
 				.getExtractedText());
 
-		ortho.correctText();
+	/*	ortho.correctText();
 		System.out.println("ORTHOGRAPHIC CORRECTION");
 
 		// displayErrors(ortho);
 
 		 result.addAll(putErrorsInTriplet(ortho));
 
-		Collections.sort(result, new ComparateurTriplet());
+		Collections.sort(result, new ComparateurTriplet()); */
 
 		writeErrors(result,path);
 
